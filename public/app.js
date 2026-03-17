@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Fetching config...");
             const res = await fetch('/api/config');
             if (!res.ok) {
-                console.error("Config fetch failed:", res.status, res.statusText);
+                const errorText = await res.text();
+                console.error("Config fetch failed:", res.status, errorText);
+                showConfigError("Sunucu yapılandırması yüklenemedi. Lütfen Vercel ayarlarını kontrol edin.");
                 return;
             }
             const config = await res.json();
@@ -118,7 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 supabaseClient = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
                 
                 // Check if user is already logged in
-                const { data: { session } } = await supabaseClient.auth.getSession();
+                const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+                
+                if (sessionError) {
+                    console.error("Session error:", sessionError);
+                }
+
                 console.log("Current session:", session ? session.user.email : "None");
                 
                 if (session) {
@@ -130,12 +137,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     appContainer.style.display = 'none';
                 }
             } else {
-                console.error("Supabase config missing");
+                console.error("Supabase config missing from API respond");
+                showConfigError("Supabase bağlantı bilgileri eksik. Lütfen Vercel dashboard üzerinden ortam değişkenlerini (Environment Variables) ekleyin.");
                 landingPage.style.display = 'flex';
             }
         } catch (e) {
             console.error("Failed to load config:", e);
+            showConfigError("Bağlantı hatası: " + e.message);
             landingPage.style.display = 'flex';
+        }
+    }
+
+    function showConfigError(msg) {
+        if (loginErrorMsg) {
+            loginErrorMsg.innerText = msg;
+            loginErrorMsg.style.display = 'block';
+            loginErrorMsg.style.background = 'rgba(239, 68, 68, 0.1)';
+            loginErrorMsg.style.color = '#ef4444';
+            loginErrorMsg.style.padding = '10px';
+            loginErrorMsg.style.borderRadius = '8px';
+            loginErrorMsg.style.marginTop = '10px';
+        }
+        // Also show on register if visible
+        if (registerErrorMsg) {
+            registerErrorMsg.innerText = msg;
+            registerErrorMsg.style.display = 'block';
         }
     }
     
