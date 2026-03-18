@@ -1,0 +1,17 @@
+{
+    "name": "Fay AI",
+    "short_name": "Fay AI",
+    "description": "Akıllı yapay zeka sohbet asistanınız",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#EAEBF0",
+    "theme_color": "#4F46E5",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%234F46E5'/><text y='360' x='70' font-size='300' font-family='Arial' font-weight='bold' fill='white'>F</text></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        }
+    ]
+}
