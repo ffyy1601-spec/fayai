@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
             roleTitle: "Özel Talimat (Sistem Prompt)",
             roleSub: "Asistanın her sohbette nasıl davranması gerektiğini tanımlayın.",
             rolePlaceholder: "Örn: Sen uzman bir yazılım geliştiricisin.",
-            roleBtnText: "Özel Talimat",
+            roleBtnText: "Modlar",
             confirmDel: "Tüm sohbet geçmişini silmek istediğinize emin misiniz?",
         },
         'EN': {
@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
             roleTitle: "Custom Instructions (System Prompt)",
             roleSub: "Define how the assistant should behave throughout this conversation.",
             rolePlaceholder: "Ex: You are an expert software engineer.",
-            roleBtnText: "Instructions",
+            roleBtnText: "Modes",
             confirmDel: "Are you sure you want to delete all chat history?",
         }
     };
