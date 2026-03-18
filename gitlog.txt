@@ -1,0 +1,23 @@
+commit 17a4d89b5149bc38c1ac74e916e8c0433ed93d31
+Author: Furkan <ffyy1601@gmail.com>
+Date:   Wed Mar 18 18:28:27 2026 +0300
+
+    feat: Viral Persona Switcher UI with Hacker, Dreamer, CEO, Sage themes
+
+commit 5091c92b1fcaafcc762e216dc3023d1dc6499ae0
+Author: Furkan <ffyy1601@gmail.com>
+Date:   Wed Mar 18 17:59:14 2026 +0300
+
+    Update changes
+
+commit 1a29d7dc708000a8ad0a4e22b4daf717249e852a
+Author: Furkan <ffyy1601@gmail.com>
+Date:   Tue Mar 17 16:26:48 2026 +0300
+
+    Fix: Vercel deployment routing and improved Supabase error handling
+
+commit c10de402676059f93075d780ae41946de7f00c32
+Author: Furkan <ffyy1601@gmail.com>
+Date:   Tue Mar 17 15:39:44 2026 +0300
+
+    feat: FAY AI - landing page, auth UI, profile panel
