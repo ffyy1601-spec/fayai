@@ -359,9 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── State ──────────────────────────────────────────────────────────────────
     const SYSTEM_PROMPT_KEY = 'fay_ai_system_prompt';
-    const DEFAULT_SYSTEM_PROMPT = '';
+    const PERSONA_KEY = 'fay_ai_persona';
+    const DEFAULT_SYSTEM_PROMPT = 'Sen yardımsever, zeki ve nazik bir yapay zeka asistanısın.';
     let savedSystemPrompt = localStorage.getItem(SYSTEM_PROMPT_KEY) || DEFAULT_SYSTEM_PROMPT;
+    let savedPersona = localStorage.getItem(PERSONA_KEY) || 'default';
     if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
+    document.documentElement.setAttribute('data-persona', savedPersona);
 
     const LANG_KEY = 'fay_ai_lang';
     let currentLang = localStorage.getItem(LANG_KEY) || 'TR';
@@ -568,17 +571,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Settings Modal ─────────────────────────────────────────────────────────
+    // ── Persona & Settings Modal ───────────────────────────────────────────────
+    const personaCards = document.querySelectorAll('.persona-card');
+    let tempSelectedPersona = savedPersona;
+    let tempSelectedPrompt = savedSystemPrompt;
+
     if (settingsBtn) settingsBtn.addEventListener('click', () => {
-        if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
+        tempSelectedPersona = savedPersona;
+        tempSelectedPrompt = savedSystemPrompt;
+        personaCards.forEach(card => {
+            if (card.dataset.personaId === tempSelectedPersona) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
         settingsModal.style.display = 'flex';
     });
-    if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', () => { settingsModal.style.display = 'none'; });
-    if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', () => {
-        savedSystemPrompt = systemPromptInput.value.trim() || DEFAULT_SYSTEM_PROMPT;
-        localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
-        settingsModal.style.display = 'none';
+
+    personaCards.forEach(card => {
+        card.addEventListener('click', () => {
+            personaCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            tempSelectedPersona = card.dataset.personaId;
+            tempSelectedPrompt = card.dataset.prompt;
+        });
     });
+
+    if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', () => { settingsModal.style.display = 'none'; });
+    
+    if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', () => {
+        savedPersona = tempSelectedPersona;
+        savedSystemPrompt = tempSelectedPrompt;
+        localStorage.setItem(PERSONA_KEY, savedPersona);
+        localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
+        document.documentElement.setAttribute('data-persona', savedPersona);
+        settingsModal.style.display = 'none';
+        
+        // Tiny glitch/flash animation on applying Hacker mode
+        if (savedPersona === 'hacker') {
+            document.body.style.animation = 'none';
+            setTimeout(() => document.body.style.animation = 'glitch 0.3s ease', 10);
+        }
+    });
+
     window.addEventListener('click', (e) => {
         if (e.target === settingsModal) settingsModal.style.display = 'none';
     });
