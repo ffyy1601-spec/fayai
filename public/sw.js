@@ -1,5 +1,5 @@
-const CACHE_NAME = 'fay-ai-v1';
-const SHELL_ASSETS = ['/', '/style.css', '/app.js'];
+const CACHE_NAME = 'fay-ai-v2';
+const SHELL_ASSETS = ['/', '/style.css', '/persona.css', '/app.js'];
 
 self.addEventListener('install', event => {
     event.waitUntil(
