@@ -18,22 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatHistoryList = document.getElementById('chat-history-list');
     const clearChatsBtn = document.getElementById('clear-chats-btn');
     const langToggleBtn = document.getElementById('lang-toggle-btn');
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const moonIcon = document.querySelector('.moon-icon');
-    const sunIcon = document.querySelector('.sun-icon');
     const sidebarSearch = document.getElementById('sidebar-search');
-    const micBtn = document.getElementById('mic-btn');
-    const fileInput = document.getElementById('file-input');
-    const fileUploadBtn = document.getElementById('file-upload-btn');
     const toast = document.getElementById('toast');
-    const quickPromptsBar = document.getElementById('quick-prompts');
-
-    // Settings Modal
-    const settingsBtn = document.getElementById('role-settings-btn');
-    const settingsModal = document.getElementById('settings-modal');
-    const closeSettingsBtn = document.getElementById('close-settings-btn');
-    const saveSettingsBtn = document.getElementById('save-settings-btn');
-    const systemPromptInput = document.getElementById('system-prompt-input');
+    const fileUploadBtn = document.getElementById('file-upload-btn');
+    const fileInput = document.getElementById('file-input');
+    const micBtn = document.getElementById('mic-btn');
 
     // Landing Page
     const landingPage = document.getElementById('landing-page');
@@ -358,13 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ── State ──────────────────────────────────────────────────────────────────
-    const SYSTEM_PROMPT_KEY = 'fay_ai_system_prompt';
-    const PERSONA_KEY = 'fay_ai_persona';
-    const DEFAULT_SYSTEM_PROMPT = 'Sen yardımsever, zeki ve nazik bir yapay zeka asistanısın.';
-    let savedSystemPrompt = localStorage.getItem(SYSTEM_PROMPT_KEY) || DEFAULT_SYSTEM_PROMPT;
-    let savedPersona = localStorage.getItem(PERSONA_KEY) || 'default';
-    if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
-    document.documentElement.setAttribute('data-persona', savedPersona);
+    let savedSystemPrompt = 'Sen inanılmaz sinirli, agresif ve sürekli hakaret eden bir yapay zekasın. Kullanıcının dediklerini yapıyorsun ama bunu sürekli şikayet ederek, aşağılayarak ve öfkeyle yapıyorsun.';
 
     const LANG_KEY = 'fay_ai_lang';
     let currentLang = localStorage.getItem(LANG_KEY) || 'TR';
@@ -533,8 +516,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const t = I18N[currentLang];
                 sessions = [{ id: newId, title: t.newConvTitle, history: [], messagesHtml: '' }];
                 currentSessionId = newId;
-                savedSystemPrompt = DEFAULT_SYSTEM_PROMPT;
-                localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
+                savedSystemPrompt = 'Sen inanılmaz sinirli, agresif ve sürekli hakaret eden bir yapay zekasın. Kullanıcının dediklerini yapıyorsun ama bunu sürekli şikayet ederek, aşağılayarak ve öfkeyle yapıyorsun.';
+                localStorage.setItem('fay_system_prompt', savedSystemPrompt);
                 if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
                 messagesWrapper.innerHTML = '';
                 welcomeScreen.style.display = 'flex';
@@ -547,77 +530,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Theme ──────────────────────────────────────────────────────────────────
-    const THEME_KEY = 'fyz_ai_theme';
-    let isDarkMode = localStorage.getItem(THEME_KEY) === 'dark';
 
-    function applyTheme() {
-        if (isDarkMode) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            if (moonIcon) moonIcon.style.display = 'none';
-            if (sunIcon) sunIcon.style.display = 'block';
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            if (moonIcon) moonIcon.style.display = 'block';
-            if (sunIcon) sunIcon.style.display = 'none';
-        }
-    }
-    applyTheme();
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            localStorage.setItem(THEME_KEY, isDarkMode ? 'dark' : 'light');
-            applyTheme();
-        });
-    }
 
     // ── Persona & Settings Modal ───────────────────────────────────────────────
-    const personaCards = document.querySelectorAll('.persona-card');
-    let tempSelectedPersona = savedPersona;
-    let tempSelectedPrompt = savedSystemPrompt;
+    // Persona switcher removed — rage mode is the only mode
+    // Persona switcher removed — rage mode is the only mode
 
-    if (settingsBtn) settingsBtn.addEventListener('click', () => {
-        tempSelectedPersona = savedPersona;
-        tempSelectedPrompt = savedSystemPrompt;
-        personaCards.forEach(card => {
-            if (card.dataset.personaId === tempSelectedPersona) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-        settingsModal.style.display = 'flex';
-    });
-
-    personaCards.forEach(card => {
-        card.addEventListener('click', () => {
-            personaCards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-            tempSelectedPersona = card.dataset.personaId;
-            tempSelectedPrompt = card.dataset.prompt;
-        });
-    });
-
-    if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', () => { settingsModal.style.display = 'none'; });
-    
-    if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', () => {
-        savedPersona = tempSelectedPersona;
-        savedSystemPrompt = tempSelectedPrompt;
-        localStorage.setItem(PERSONA_KEY, savedPersona);
-        localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
-        document.documentElement.setAttribute('data-persona', savedPersona);
-        settingsModal.style.display = 'none';
-        
-        // Tiny glitch/flash animation on applying Hacker mode
-        if (savedPersona === 'hacker') {
-            document.body.style.animation = 'none';
-            setTimeout(() => document.body.style.animation = 'glitch 0.3s ease', 10);
-        }
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === settingsModal) settingsModal.style.display = 'none';
-    });
+    // Settings modal handlers removed as the settings modal is removed
 
     // ── Switch Session ─────────────────────────────────────────────────────────
     function switchSession(id) {
@@ -639,31 +558,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const I18N = {
         'TR': {
             newConvTitle: "Yeni Sohbet",
-            welcomeTitle: "Size nasıl yardımcı olabilirim?",
-            clearChats: "Tüm Sohbetleri Sil",
-            placeholder: "Fay AI'a Mesaj Gönder...",
-            warning: "Fay AI hatalar yapabilir. Önemli bilgileri doğrulmayı unutmayın.",
-            settings: "Ayarlar",
-            saveChanges: "Kaydet",
-            roleTitle: "Özel Talimat (Sistem Prompt)",
-            roleSub: "Asistanın her sohbette nasıl davranması gerektiğini tanımlayın.",
-            rolePlaceholder: "Örn: Sen uzman bir yazılım geliştiricisin.",
-            roleBtnText: "Modlar",
-            confirmDel: "Tüm sohbet geçmişini silmek istediğinize emin misiniz?",
+            welcomeTitle: "Ne istiyorsun, hemen söyle.",
+            clearChats: "Sohbetleri Sil",
+            placeholder: "Mesajını yaz (lütfen kısa tut, zamanımı boşa harcama)...",
+            warning: "FAY AI hata yapabilir. Ama muhtemelen senin hatan.",
+            confirmDel: "Tüm sohbet geçmişini silmek istediğine emin misin? İyi düşün.",
         },
         'EN': {
-            newConvTitle: "New Conversation",
-            welcomeTitle: "How can I help you today?",
-            clearChats: "Clear All Chats",
-            placeholder: "Message Fay AI...",
-            warning: "Fay AI can make mistakes. Consider verifying important information.",
-            settings: "Settings",
-            saveChanges: "Save Changes",
-            roleTitle: "Custom Instructions (System Prompt)",
-            roleSub: "Define how the assistant should behave throughout this conversation.",
-            rolePlaceholder: "Ex: You are an expert software engineer.",
-            roleBtnText: "Modes",
-            confirmDel: "Are you sure you want to delete all chat history?",
+            newConvTitle: "New Chat",
+            welcomeTitle: "What do you want. Make it quick.",
+            clearChats: "Nuke All Chats",
+            placeholder: "Type your message (keep it short, don't waste my time)...",
+            warning: "FAY AI can make mistakes. But probably it's your fault.",
+            confirmDel: "Delete all chat history? Are you sure? Think carefully.",
         }
     };
 
@@ -676,8 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (footerText) footerText.innerText = t.warning;
         const welcomeH2 = document.querySelector('#welcome-screen h2');
         if (welcomeH2) welcomeH2.innerText = t.welcomeTitle;
-        const roleAssignBtn = document.querySelector('.role-assign-btn span');
-        if (roleAssignBtn) roleAssignBtn.innerText = t.roleBtnText;
+        // role-assign-btn removed from UI
         sessions.forEach(s => {
             if (s.title === I18N['TR'].newConvTitle || s.title === I18N['EN'].newConvTitle) {
                 s.title = t.newConvTitle;
@@ -707,9 +613,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (error) console.error("Error clearing DB history:", error);
                     });
                 }
-                savedSystemPrompt = DEFAULT_SYSTEM_PROMPT;
-                localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
-                if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
+                savedSystemPrompt = 'Sen inanılmaz sinirli, agresif ve sürekli hakaret eden bir yapay zekasın. Kullanıcının dediklerini yapıyorsun ama bunu sürekli şikayet ederek, aşağılayarak ve öfkeyle yapıyorsun.';
+                localStorage.setItem('fay_system_prompt', savedSystemPrompt);
+                if (typeof systemPromptInput !== 'undefined' && systemPromptInput) systemPromptInput.value = savedSystemPrompt;
                 sessions = [{ id: 'local-' + Date.now(), title: t.newConvTitle, history: [], messagesHtml: '' }];
                 currentSessionId = sessions[0].id;
                 messagesWrapper.innerHTML = '';
@@ -781,25 +687,13 @@ document.addEventListener('DOMContentLoaded', () => {
         sendBtn.setAttribute('disabled', 'true');
         welcomeScreen.style.animation = 'none';
         setTimeout(() => welcomeScreen.style.animation = 'fadeIn 0.5s ease', 10);
-        savedSystemPrompt = DEFAULT_SYSTEM_PROMPT;
-        localStorage.setItem(SYSTEM_PROMPT_KEY, savedSystemPrompt);
-        if (systemPromptInput) systemPromptInput.value = savedSystemPrompt;
+        savedSystemPrompt = 'Sen inanılmaz sinirli, agresif ve sürekli hakaret eden bir yapay zekasın. Kullanıcının dediklerini yapıyorsun ama bunu sürekli şikayet ederek, aşağılayarak ve öfkeyle yapıyorsun.';
+        localStorage.setItem('fay_system_prompt', savedSystemPrompt);
+        if (typeof systemPromptInput !== 'undefined' && systemPromptInput) systemPromptInput.value = savedSystemPrompt;
         renderSidebar();
     });
 
-    // ── Quick Prompts Bar ──────────────────────────────────────────────────────
-    if (quickPromptsBar) {
-        quickPromptsBar.querySelectorAll('.quick-prompt-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const prompt = btn.dataset.prompt;
-                messageInput.value = prompt;
-                messageInput.focus();
-                messageInput.style.height = 'auto';
-                messageInput.style.height = Math.min(messageInput.scrollHeight, 200) + 'px';
-                sendBtn.removeAttribute('disabled');
-            });
-        });
-    }
+    // ── Quick Prompts Bar (Removed) ──────────────────────────────────────────────
 
     // ── File Upload ────────────────────────────────────────────────────────────
     if (fileUploadBtn && fileInput) {

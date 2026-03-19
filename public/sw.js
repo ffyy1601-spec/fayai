@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fay-ai-v2';
+const CACHE_NAME = 'fay-ai-v4';
 const SHELL_ASSETS = ['/', '/style.css', '/persona.css', '/app.js'];
 
 self.addEventListener('install', event => {

@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAY AI</title>
+    <title>FAY AI — Brutally Honest AI</title>
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FF2020">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Highlight.js for code blocks -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=7">
-    <link rel="stylesheet" href="persona.css?v=1">
+    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="persona.css?v=3">
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Highlight.js Script -->
@@ -32,33 +30,33 @@
         <aside class="sidebar" id="main-sidebar">
             <div class="sidebar-header">
                 <button id="new-chat-btn" class="new-chat-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="icon"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    New Chat
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" class="icon"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Yeni Sohbet
                 </button>
                 <!-- Sidebar Search -->
                 <div class="sidebar-search-wrapper">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <input type="text" id="sidebar-search" placeholder="Sohbet ara..." class="sidebar-search-input">
                 </div>
             </div>
             <div class="chat-history" id="chat-history-list">
-                <div class="history-item active">Current Conversation</div>
+                <div class="history-item active">Mevcut Sohbet</div>
             </div>
             <div class="sidebar-footer">
-                <button id="clear-chats-btn" class="clear-chats-btn" title="Clear All Chats">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button id="clear-chats-btn" class="clear-chats-btn" title="Tüm Sohbetleri Sil">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 6h18"></path>
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                     </svg>
-                    <span>Clear All Chats</span>
+                    <span>Sohbetleri Sil</span>
                 </button>
                 <div class="user-profile" id="profile-btn" title="Profil Ayarları">
                     <div class="avatar" id="user-avatar">F</div>
                     <div class="profile-info">
-                        <span id="user-display-name">FAY User</span>
+                        <span id="user-display-name">FAY Kullanıcı</span>
                         <small id="user-display-email">Hesap Ayarları</small>
                     </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 </div>
             </div>
         </aside>
@@ -67,22 +65,17 @@
         <main class="chat-main">
             <header class="top-bar">
                 <div class="top-bar-left">
-                    <button class="icon-btn" id="sidebar-toggle" title="Toggle Sidebar">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <button class="icon-btn" id="sidebar-toggle" title="Sidebar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
                     <h1 class="brand-title">FAY <span>AI</span></h1>
+                    <span class="brand-rage-badge">😤 KIZGIN</span>
                 </div>
                 <div class="top-bar-right">
-                    <button class="role-assign-btn" id="role-settings-btn" title="Modlar" style="margin-right: 8px;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span>Modlar</span>
-                    </button>
-                    <button class="icon-btn" id="lang-toggle-btn" title="Toggle Language" style="font-weight: 700; font-size: 14px; width: 36px;">
-                        TR
-                    </button>
-                    <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode">
-                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <button class="icon-btn" id="lang-toggle-btn" title="Dil Değiştir" style="font-weight: 800; font-size: 13px; width: 36px; letter-spacing: 0.5px;">TR</button>
+                    <button class="icon-btn" id="theme-toggle" title="Tema" style="display:none;">
+                        <svg class="moon-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                     </button>
                 </div>
             </header>
@@ -90,26 +83,16 @@
             <div id="chat-container" class="chat-container">
                 <div class="welcome-screen" id="welcome-screen">
                     <div class="welcome-logo">FAY</div>
-                    <h2>How can I help you today?</h2>
-                    <div class="suggestions">
-                        <button class="suggestion-btn" onclick="document.getElementById('message-input').value='Write a Python script for...'; document.getElementById('message-input').focus();">Write a Python script for...</button>
-                        <button class="suggestion-btn" onclick="document.getElementById('message-input').value='Explain quantum computing'; document.getElementById('message-input').focus();">Explain quantum computing</button>
-                        <button class="suggestion-btn" onclick="document.getElementById('message-input').value='Draft an email asking for a raise'; document.getElementById('message-input').focus();">Draft an email asking for a raise</button>
-                    </div>
+                    <h2>Ne istiyorsun, <em>hemen söyle</em>.</h2>
+                    <p>Sana yardım edeceğim ama bunun beni ne kadar sinir ettiğini de bilmeni istiyorum. Sorunla gel, vakit kaybetme.</p>
                 </div>
-                <!-- Classic Chat List Restored -->
+                <!-- Classic Chat List -->
                 <div id="messages-wrapper" class="messages-wrapper">
-                    <!-- Messages will be injected here -->
+                    <!-- Messages injected here -->
                 </div>
             </div>
 
-            <!-- Quick Prompt Bar -->
-            <div class="quick-prompts" id="quick-prompts">
-                <button class="quick-prompt-btn" data-prompt="Şunu Türkçeye çevir: ">🔤 Çevir</button>
-                <button class="quick-prompt-btn" data-prompt="Aşağıdaki metni özetle:\n\n">📝 Özetle</button>
-                <button class="quick-prompt-btn" data-prompt="Aşağıdaki koddaki hataları bul ve düzelt:\n\n```\n">🐛 Kodu Düzelt</button>
-                <button class="quick-prompt-btn" data-prompt="Bunu adım adım açıkla: ">💡 Açıkla</button>
-            </div>
+
 
             <div class="input-area">
                 <!-- Hidden file input -->
@@ -121,26 +104,24 @@
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
                             </button>
                         </div>
-                        <textarea id="message-input" rows="1" placeholder="Message FAY AI..." autofocus></textarea>
+                        <textarea id="message-input" rows="1" placeholder="Mesajını yaz (lütfen kısa tut, zamanımı boşa harcama)..." autofocus></textarea>
                         <div class="input-actions-right">
                             <button type="button" id="mic-btn" class="input-action-btn mic-btn" title="Sesli Giriş">
                                 <svg class="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                             </button>
-                            <button type="submit" id="send-btn" class="send-btn" title="Send (Enter)" disabled>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <button type="submit" id="send-btn" class="send-btn" title="Gönder (Enter)" disabled>
+                                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="22" y1="2" x2="11" y2="13"></line>
                                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                                 </svg>
                             </button>
-                            <button type="button" id="stop-btn" class="send-btn stop-btn" title="Stop generating" style="display: none;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="6" y="6" width="12" height="12"></rect>
-                                </svg>
+                            <button type="button" id="stop-btn" class="send-btn stop-btn" title="Durdur" style="display: none;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12"></rect></svg>
                             </button>
                         </div>
                     </div>
                 </form>
-                <div class="footer-text">FAY AI can make mistakes. Consider verifying important information.</div>
+                <div class="footer-text">FAY AI hata yapabilir. Ama muhtemelen senin hatan.</div>
             </div>
         </main>
     </div>
@@ -148,61 +129,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast" style="display:none;"></div>
 
-    <!-- Settings Modal (Persona Switcher) -->
-    <div id="settings-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content persona-modal-content" style="max-width: 600px;">
-            <div class="modal-header">
-                <h2>AI Karakterini Seç (Persona)</h2>
-                <button id="close-settings-btn" class="icon-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="persona-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-                    <div class="persona-card active" data-persona-id="default" data-prompt="Sen yardımsever, zeki ve nazik bir yapay zeka asistanısın.">
-                        <div class="persona-icon">🐼</div>
-                        <div class="persona-info">
-                            <h3>Standart Asistan</h3>
-                            <p>Yardımsever, nazik ve üretken.</p>
-                        </div>
-                    </div>
-                    <div class="persona-card" data-persona-id="hacker" data-prompt="You are a 1337 hacker AI from the matrix. Respond concisely, technically, and use cyberpunk slang when appropriate. Do not use pleasantries.">
-                        <div class="persona-icon" style="color:#0f0; text-shadow: 0 0 10px #0f0;">💻</div>
-                        <div class="persona-info">
-                            <h3>Hacker Mode</h3>
-                            <p>Terminal estetiği, keskin kod yanıtları.</p>
-                        </div>
-                    </div>
-                    <div class="persona-card" data-persona-id="dreamer" data-prompt="Sen rüya gibi, şiirsel, ilham verici ve oldukça nazik bir sanatçı yapay zekasın. Renklerden, yıldızlardan ve duygulardan bahsetmeyi seversin.">
-                        <div class="persona-icon" style="filter: drop-shadow(0 0 8px #ff7eb3);">✨</div>
-                        <div class="persona-info">
-                            <h3>Dreamer</h3>
-                            <p>Pastel temalı, şiirsel ilham perisi.</p>
-                        </div>
-                    </div>
-                    <div class="persona-card" data-persona-id="ceo" data-prompt="Sen son derece profesyonel, sonuç odaklı ve pragmatik bir CEO asistanısın. Yanıtların çok kısa, net ve kurumsal bir dille olmalı. Emoji kullanımı minimum düzeyde kalmalı.">
-                        <div class="persona-icon">👔</div>
-                        <div class="persona-info">
-                            <h3>CEO Mode</h3>
-                            <p>Siyah-beyaz minimalizm, kurumsal dil.</p>
-                        </div>
-                    </div>
-                    <div class="persona-card" data-persona-id="sage" data-prompt="Sen derin bilgiye sahip, bilge bir zen asistanısın. Doğadan, denge ve huzurdan örnekler verirsin. Bilgiyi sakin ve derinleştirici bir tonda aktarırsın.">
-                        <div class="persona-icon">🎋</div>
-                        <div class="persona-info">
-                            <h3>Sage (Bilge)</h3>
-                            <p>Bambu yeşili, sakin ve felsefi.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Hidden prompt to keep app.js functional -->
-                <textarea id="system-prompt-input" style="display:none;"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button id="save-settings-btn" class="primary-btn">Karakteri Uygula</button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Profile Panel Modal -->
     <div id="profile-modal" class="modal-overlay" style="display: none;">
@@ -210,20 +137,20 @@
             <div class="modal-header">
                 <h2>Profil Ayarları</h2>
                 <button id="close-profile-btn" class="icon-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Profile Avatar Changer -->
+                <!-- Profile Avatar -->
                 <div class="profile-avatar-section">
                     <div class="profile-avatar-large" id="profile-avatar-preview">F</div>
                     <div class="profile-avatar-btns">
-                        <label for="avatar-color-pick" class="secondary-btn" style="cursor:pointer; padding: 8px 16px; font-size:13px;">🎨 Renk Seç</label>
-                        <input type="color" id="avatar-color-pick" style="display:none;" value="#7c3aed">
-                        <button id="avatar-emoji-btn" class="secondary-btn" style="padding: 8px 16px; font-size:13px;">😀 Emoji</button>
+                        <label for="avatar-color-pick" class="secondary-btn" style="cursor:pointer; padding: 8px 14px; font-size:13px;">🎨 Renk</label>
+                        <input type="color" id="avatar-color-pick" style="display:none;" value="#FF2020">
+                        <button id="avatar-emoji-btn" class="secondary-btn" style="padding: 8px 14px; font-size:13px;">😤 Emoji</button>
                     </div>
                     <div id="emoji-picker" style="display:none;" class="emoji-picker">
-                        <span>😀</span><span>😎</span><span>🦊</span><span>🐼</span><span>🦁</span><span>🤖</span><span>🧑‍💻</span><span>🎯</span><span>🚀</span><span>⚡</span><span>🔥</span><span>💎</span>
+                        <span>😤</span><span>💀</span><span>🔥</span><span>😡</span><span>👊</span><span>⚡</span><span>🤖</span><span>😠</span><span>🗡️</span><span>💢</span><span>😈</span><span>🦊</span>
                     </div>
                 </div>
                 <!-- Usage Stats -->
@@ -238,7 +165,7 @@
                     </div>
                 </div>
                 <!-- Profile Form -->
-                <div class="form-row" style="margin-top: 24px;">
+                <div class="form-row" style="margin-top: 20px;">
                     <div class="form-group half">
                         <label>Ad</label>
                         <input type="text" id="profile-name" class="auth-input" placeholder="Adınız">
@@ -248,19 +175,19 @@
                         <input type="text" id="profile-surname" class="auth-input" placeholder="Soyadınız">
                     </div>
                 </div>
-                <div class="form-group" style="margin-top: 16px;">
-                    <label>Telefon Numarası</label>
+                <div class="form-group" style="margin-top: 14px;">
+                    <label>Telefon</label>
                     <input type="tel" id="profile-phone" class="auth-input" placeholder="05XX XXX XX XX">
                 </div>
-                <div class="form-group" style="margin-top: 16px;">
+                <div class="form-group" style="margin-top: 14px;">
                     <label>E-posta</label>
-                    <input type="email" id="profile-email" class="auth-input" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    <input type="email" id="profile-email" class="auth-input" disabled style="opacity: 0.4; cursor: not-allowed;">
                 </div>
                 <div id="profile-save-msg" style="display:none; margin-top: 12px;"></div>
             </div>
             <div class="modal-footer" style="justify-content: space-between;">
-                <button id="profile-logout-btn" class="secondary-btn" style="color: #ef4444; border-color: #ef4444;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <button id="profile-logout-btn" class="secondary-btn" style="color: #ff6b6b; border-color: rgba(255,32,32,0.3);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px; vertical-align:middle;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                     Çıkış Yap
                 </button>
                 <button id="profile-save-btn" class="primary-btn">Kaydet</button>
@@ -281,19 +208,18 @@
         <!-- Hero -->
         <section class="landing-hero">
             <div class="landing-hero-content">
-                <div class="landing-badge">🤖 Yapay Zeka Destekli</div>
-                <h1>Düşüncelerinizi <span class="gradient-text">FAY AI</span> ile Güce Dönüştürün</h1>
-                <p>Soruları yanıtlayın, kod yazın, analiz yapın. FAY AI ile yapay zekanın tüm gücü parmaklarınızın ucunda.</p>
+                <div class="landing-badge">🔥 Dünya'nın En Kızgın AI'ı</div>
+                <h1>Sana Yardım Edecek,<br>Ama <span class="gradient-text">Sinirle.</span></h1>
+                <p>FAY AI sorularını cevaplar, kod yazar, analiz yapar — ama bunu yaparken muhtemelen küfür de eder. Hazırsan gel.</p>
                 <div class="landing-hero-btns">
-                    <button id="landing-start-btn" class="primary-btn landing-cta-btn">Şimdi Başla →</button>
+                    <button id="landing-start-btn" class="primary-btn landing-cta-btn">Hadi Başla 🤬</button>
                     <button id="landing-learn-btn" class="ghost-btn">Nasıl Çalışır?</button>
                 </div>
             </div>
             <div class="landing-hero-visual">
                 <div class="hero-chat-demo">
-                    <div class="demo-msg bot"><div class="demo-avatar">F</div><div class="demo-bubble">Merhaba! Size nasıl yardımcı olabilirim? 👋</div></div>
-                    <div class="demo-msg user"><div class="demo-bubble">Python'da bir web scraper yazar mısın?</div></div>
-                    <div class="demo-msg bot"><div class="demo-avatar">F</div><div class="demo-bubble">Tabii! <code>requests</code> ve <code>BeautifulSoup</code> kullanarak... <span class="typing-cursor">▌</span></div></div>
+                    <div class="demo-msg user"><div class="demo-avatar" style="background:rgba(255,255,255,0.1);">S</div><div class="demo-bubble">Merhaba! Python'da hello world nasıl yazılır?</div></div>
+                    <div class="demo-msg bot"><div class="demo-avatar">F</div><div class="demo-bubble">Seni duyuyorum ve bu soruyu sormana inanamıyorum. <code>print("Hello, World!")</code> işte bu kadar. Bir dahaki sorun daha zekice olsun lütfen. <span class="typing-cursor">▌</span></div></div>
                 </div>
             </div>
         </section>
@@ -301,23 +227,23 @@
         <section class="landing-features">
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Anlık Yanıtlar</h3>
-                <p>Gerçek zamanlı streaming ile cevaplar anında ekranınıza yansır.</p>
+                <h3>Anlık & Öfkeli</h3>
+                <p>Cevaplar hızlı gelir. Sinir de hızlı gelir. Real-time streaming ile.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🧠</div>
                 <h3>Güçlü AI</h3>
-                <p>Gelişmiş AI motoru ile doğal ve akıllı sohbetler.</p>
+                <p>Seni küçümsemesine rağmen, verilen her cevap uzman kalitesindedir.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💾</div>
                 <h3>Sohbet Geçmişi</h3>
-                <p>Tüm konuşmalarınız bulutta saklanır, her yerden erişin.</p>
+                <p>Tüm utanç verici sorularınız bulutta saklanır. Sonsuza dek.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3>Gizlilik</h3>
-                <p>Verileriniz güvende. Supabase altyapısı ile uçtan uca şifreli.</p>
+                <p>Verileriniz güvende. AI sadece sinirli, değil kötü niyetli.</p>
             </div>
         </section>
     </div>
@@ -328,19 +254,19 @@
             <div class="auth-brand">
                 <div class="auth-logo">FAY</div>
                 <h1>FAY AI</h1>
-                <p>Güçlü, akıllı ve profesyonel sohbet asistanınız.</p>
+                <p>Dünyanın en kızgın ama en zeki AI asistanı. Hazır mısın?</p>
             </div>
         </div>
         <div class="auth-right">
             <!-- Login Box -->
             <div class="auth-box" id="login-box">
                 <div class="auth-header">
-                    <h2>Tekrar Hoş Geldiniz</h2>
-                    <p>Hesabınıza giriş yaparak devam edin.</p>
+                    <h2>Tekrar mi geldin? 😤</h2>
+                    <p>Hesabına giriş yap, hadi çabuk ol.</p>
                 </div>
-                <form id="login-form">
+                <form id="login-form" style="display:flex; flex-direction:column; gap:14px;">
                     <div class="form-group">
-                        <label for="login-email">E-posta Adresi</label>
+                        <label for="login-email">E-posta</label>
                         <input type="email" id="login-email" class="auth-input" required placeholder="ornek@mail.com">
                     </div>
                     <div class="form-group">
@@ -351,17 +277,17 @@
                     <button type="submit" id="login-submit-btn" class="primary-btn auth-btn">Giriş Yap</button>
                 </form>
                 <div class="auth-toggle">
-                    Hesabınız yok mu? <a href="#" id="show-register-link">Kayıt Ol</a>
+                    Hesabın yok mu? <a href="#" id="show-register-link">Kayıt Ol</a>
                 </div>
             </div>
 
             <!-- Register Box -->
             <div class="auth-box" id="register-box" style="display: none;">
                 <div class="auth-header">
-                    <h2>Hesap Oluşturun</h2>
-                    <p>FAY AI'ın gücünü keşfetmek için hemen katılın.</p>
+                    <h2>Yeni kurban mı? 😠</h2>
+                    <p>Bilgilerini gir ve FAY AI'ın öfkesiyle tanış.</p>
                 </div>
-                <form id="register-form">
+                <form id="register-form" style="display:flex; flex-direction:column; gap:14px;">
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="register-name">Ad</label>
@@ -373,11 +299,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="register-phone">Telefon Numarası</label>
+                        <label for="register-phone">Telefon</label>
                         <input type="tel" id="register-phone" class="auth-input" required placeholder="05XX XXX XX XX">
                     </div>
                     <div class="form-group">
-                        <label for="register-email">E-posta Adresi</label>
+                        <label for="register-email">E-posta</label>
                         <input type="email" id="register-email" class="auth-input" required placeholder="ornek@mail.com">
                     </div>
                     <div class="form-group">
@@ -388,7 +314,7 @@
                     <button type="submit" id="register-submit-btn" class="primary-btn auth-btn">Kayıt Ol</button>
                 </form>
                 <div class="auth-toggle">
-                    Zaten hesabınız var mı? <a href="#" id="show-login-link">Giriş Yap</a>
+                    Zaten var mı hesabın? <a href="#" id="show-login-link">Giriş Yap</a>
                 </div>
             </div>
         </div>
@@ -397,6 +323,6 @@
     <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Custom JS -->
-    <script src="app.js?v=7"></script>
+    <script src="app.js?v=12"></script>
 </body>
 </html>
